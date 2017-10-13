@@ -1,0 +1,39 @@
+<section *ngIf="person">
+  <h3>You Selected: {{person.name}} </h3>
+    <h3>Description </h3>
+    He weighs {{person.weight}} and is {{person.height}} tall.
+  <form (ngSubmit)="savePersonDetails()" #personForm="ngForm">
+    <div>
+      <label for="name">Name: </label>
+      <input type="text" name="namer" required [(ngModel)]="person.name" #nameNgModel="ngModel" #names/>
+    </div>
+    <div [hidden]="nameNgModel.valid || nameNgModel.pristine" class="error">
+      Name is required my good sir/lady!
+    </div>
+    <div>
+      <label for="weight">Weight:</label>
+      <Input type="text" name="weight" [(ngModel)]="person.weight" min=0 max=350 ngDefaultControl #weight="ngModel"/>
+    </div>
+    <div *ngIf="weight.errors && (weight.dirty || weight.touched)" class="error">
+      <p [hidden]="!weight.errors.min">
+        Weight must be higher than a feather's. {{weight.value}} is way too low.
+      </p>
+      <p [hidden]="!weight.errors.max">
+        Weight can't be higher than a Rancor's. {{weight.value}} is too high
+      </p>
+    </div>
+    <div>
+      <label for="height">Height:</label>
+      <Input type="text" name="height" [(ngModel)]="person.height" ngDefaultControl/>
+    </div>
+    <p>
+      input "name" class is: {{ names.className }}
+    </p>
+    <button type="submit" [disabled]="!personForm.form.valid">Save</button>
+
+  </form>
+</section>
+
+
+
+<button (click)='goToPeopleList()'>Back to List</button>

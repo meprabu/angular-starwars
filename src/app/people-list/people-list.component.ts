@@ -23,7 +23,10 @@ export class PeopleListComponent implements OnInit {
   selectedPerson : Person;
 
   constructor(private peopleService:PeopleService) {
-    this.people = peopleService.getAll();
+    //this.people = peopleService.getAll();
+    peopleService.getAllOnline().subscribe(
+      p => this.people = p
+    );
   }
 
   ngOnInit() {
