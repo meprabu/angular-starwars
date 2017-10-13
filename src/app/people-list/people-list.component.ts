@@ -6,9 +6,9 @@ import {PeopleService} from '../people.service'
   selector: 'app-people-list',
   template: `
     <!-- this is the new syntax for ng-repeat -->
-    <ul>
-      <li *ngFor="let person of people">
-         <a [routerLink]="['/persons', person.id]">
+    <ul class="list-group">
+      <li  *ngFor="let person of people">
+         <a class="list-group-item list-group-item-action" [routerLink]="['/persons', person.id]">
           {{person.name}}
           </a>
       </li>
